@@ -1,5 +1,5 @@
 <form [formGroup]="userForm" (ngSubmit)="OnSubmit()">
     <input name="name" placeholder="Name" formControlName="name">
     <input name="phone" placeholder="Phone" formControlName="phone">
-    <button type="submit">Submit</button>
+    <button type="submit" [disabled]="!userForm.valid">Submit</button>
 </form>
