@@ -1,5 +1,6 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { UserListItem } from './user-list-item/user-list-item';
+import { UserStorageService } from '../../services/user-storage-service';
 
 @Component({
   selector: 'app-user-list',
@@ -8,11 +9,7 @@ import { UserListItem } from './user-list-item/user-list-item';
   styleUrl: './user-list.scss',
 })
 export class UserList {
-  tempUsers = [
-    {id: 0, name: "Joe", phone: 1231231231, joke: "Joke"},
-    {id: 1, name: "Joe2", phone: 1231231231, joke: "Joke2"},
-    {id: 2, name: "Joe3", phone: 1231231231, joke: "Joke3"},
-  ]
+  userStorageService = inject(UserStorageService)
 
-  usersSignal = signal(this.tempUsers)
+  usersSignal = signal(this.userStorageService.getUsers())
 }
