@@ -11,5 +11,5 @@ import { UserStorageService } from '../../services/user-storage-service';
 export class UserList {
   userStorageService = inject(UserStorageService)
 
-  usersSignal = signal(this.userStorageService.getUsers())
+  usersSignal = this.userStorageService.getUsers()
 }
