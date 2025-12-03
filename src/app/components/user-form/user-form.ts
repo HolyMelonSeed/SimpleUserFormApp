@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserStorageService } from '../../services/user-storage-service';
 
 @Component({
   selector: 'app-user-form',
@@ -9,8 +10,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class UserForm {
 OnSubmit() {
-  throw new Error('Method not implemented.');
+  this.userStorageService.addUser(this.userForm.value.name!, parseInt(this.userForm.value.phone!))
+  this.userForm.reset();
 }
+
+  userStorageService = inject(UserStorageService)
+
   userForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]{10}")])

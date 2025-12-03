@@ -1,5 +1,6 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { User } from '../../../model/user';
+import { UserStorageService } from '../../../services/user-storage-service';
 
 @Component({
   selector: 'app-user-list-item',
@@ -9,7 +10,10 @@ import { User } from '../../../model/user';
 })
 export class UserListItem {
 removeUser() {
-throw new Error('Method not implemented.');
+  this.userStorageService.deleteUser(this.userInputSignal()!)
 }
+
+  userStorageService = inject(UserStorageService)
+
   userInputSignal = input<User>();
 }
