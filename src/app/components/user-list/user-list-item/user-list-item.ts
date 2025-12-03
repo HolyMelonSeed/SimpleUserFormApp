@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
+import { User } from '../../../model/user';
 
 @Component({
   selector: 'app-user-list-item',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './user-list-item.scss',
 })
 export class UserListItem {
-
+removeUser() {
+throw new Error('Method not implemented.');
+}
+  userInputSignal = input<User>();
 }
