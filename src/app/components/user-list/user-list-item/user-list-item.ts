@@ -9,11 +9,11 @@ import { UserStorageService } from '../../../services/user-storage-service';
   styleUrl: './user-list-item.scss',
 })
 export class UserListItem {
-removeUser() {
-  this.userStorageService.deleteUser(this.userInputSignal()!)
-}
+  removeUser() {
+    this.userStorageService.deleteUser(this.userInputSignal()!);
+  }
 
-  userStorageService = inject(UserStorageService)
+  userStorageService = inject(UserStorageService);
 
   userInputSignal = input<User>();
 }

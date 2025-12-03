@@ -1,5 +1,5 @@
-<div>
 @for (user of usersSignal(); track $index) {
-    <app-user-list-item [userInputSignal]="user"></app-user-list-item>
-}
+<div [ngClass]="{ 'highlight': checkFibonacci($index) }">
+  <app-user-list-item [userInputSignal]="user"></app-user-list-item>
 </div>
+}
