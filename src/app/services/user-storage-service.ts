@@ -1,10 +1,13 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../model/user';
+import { LocalStorageService } from './local-storage-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserStorageService {
+  userListStorageKey = "userList"
+
   getUsers() {
     return this.usersSignal
   }
@@ -12,24 +15,24 @@ export class UserStorageService {
   addUser(name: string, phone: number) {
     this.usersSignal.update((list) => {
       const updatedList = [...list, {id: 1, name, phone, joke: "joke"}]
+
+      this.localStorageService.setItem(this.userListStorageKey, updatedList)
       return updatedList
     })
   }
 
   deleteUser(user: User) {
     this.usersSignal.update((list) => {
-      const updatedList = list.filter((index) => {
+      const updatedList = list.filter((index: User) => {
         return index != user
       })
+      
+      this.localStorageService.setItem(this.userListStorageKey, updatedList)
       return updatedList
     })
   }
 
-  tempUsers = [
-    {id: 0, name: "Joe", phone: 1231231231, joke: "Joke"},
-    {id: 1, name: "Joe2", phone: 1231231231, joke: "Joke2"},
-    {id: 2, name: "Joe3", phone: 1231231231, joke: "Joke3"},
-  ]
+  localStorageService = inject(LocalStorageService)
 
-  usersSignal = signal(this.tempUsers)
+  usersSignal = signal(this.localStorageService.getItem(this.userListStorageKey))
 }
