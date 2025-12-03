@@ -1,8 +1,10 @@
-div {
-    border: 2px solid black;
+.list {
     padding: 12px;
+    border: 2px solid black;
 }
 
 .highlight {
-    background-color: green
+    color: green;
+    font-weight: bold;
+    margin-top: 12px;
 }
